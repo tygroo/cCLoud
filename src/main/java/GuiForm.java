@@ -18,7 +18,8 @@ public class GuiForm extends JFrame{
     private JButton ajoutButton;
     private JButton supprimerButton;
     private JPanel rootPanel;
-    private JCheckBox testCheckBox;
+    private JCheckBox testCheckBox1;
+    private JCheckBox testCheckBox2;
     DefaultListModel dlm;
 
 
@@ -35,6 +36,26 @@ public class GuiForm extends JFrame{
 
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        testCheckBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (testCheckBox2.isSelected()){
+                    testCheckBox2.setSelected(false);
+                    pack();
+                }
+            }
+        });
+
+        testCheckBox2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (testCheckBox1.isSelected()){
+                    testCheckBox1.setSelected(false);
+                    pack();
+                }
+            }
+        });
 
         //list1 = new JList(dlm);
         list1.setModel(dlm);
@@ -53,7 +74,8 @@ public class GuiForm extends JFrame{
                     if (StringUtils.containsOnly(extention, "jpg") ||
                             StringUtils.containsOnly(extention, "jpeg") ||
                             StringUtils.containsOnly(extention, "png")||
-                            StringUtils.containsOnly(extention, "JPG")) {
+                            StringUtils.containsOnly(extention, "JPG")||
+                            StringUtils.containsOnly(extention, "PNG")) {
                         File fileList = dialogue.getSelectedFile();
                         dlm.addElement(fileList.getPath());
                         list1.setModel(dlm);
@@ -74,10 +96,16 @@ public class GuiForm extends JFrame{
         envoyerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String url = "http://localhost:8081/rest/upload/file/";
-                if (testCheckBox.isSelected()){
-                    url = "http://198.27.66.107/cloudpix/rest/upload/file/";
+                String url = "http://198.27.66.107/cloudpix/rest/upload/file/";
+                if (testCheckBox1.isSelected()){
+                    url = "http://localhost:8080/rest/upload/file/";
+
                 }
+                if (testCheckBox2.isSelected()){
+                    url = "http://localhost:8081/rest/upload/file/";
+                }
+
+
                 ListModel model = list1.getModel();
 
                 for(int i=0; i < model.getSize(); i++){
@@ -90,7 +118,7 @@ public class GuiForm extends JFrame{
                         System.out.print("Erreur du tranfert de :"+o+ "avec pour erreur :"+ e1.getMessage());
                         //e1.printStackTrace();
                     }
-                    System.out.print("Fin du tranfert de :"+o);
+                    System.out.print("/r Fin du tranfert de :"+o);
                 }
             }
         });

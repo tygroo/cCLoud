@@ -25,5 +25,8 @@
         <module name="cCLoud" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="1.7">
+      <module name="cCLoud" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
