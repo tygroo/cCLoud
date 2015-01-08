@@ -57,6 +57,7 @@ public class GuiForm extends JFrame{
                         File fileList = dialogue.getSelectedFile();
                         dlm.addElement(fileList.getPath());
                         list1.setModel(dlm);
+                        pack();
 
                     }
                 }
@@ -75,7 +76,7 @@ public class GuiForm extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String url = "http://localhost:8081/rest/upload/file/";
                 if (testCheckBox.isSelected()){
-                    url = "http://198.27.66.107:8082/rest/upload/file/";
+                    url = "http://198.27.66.107/cloudpix/rest/upload/file/";
                 }
                 ListModel model = list1.getModel();
 
