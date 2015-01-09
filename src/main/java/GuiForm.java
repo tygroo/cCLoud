@@ -38,7 +38,6 @@ public class GuiForm extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         testCheckBox1.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 if (testCheckBox2.isSelected()) {
                     testCheckBox2.setSelected(false);
@@ -87,14 +86,12 @@ public class GuiForm extends JFrame {
         });
 
         annulerButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
 
         envoyerButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String url = "http://198.27.66.107/cloudpix/rest/upload/file/";
                 if (testCheckBox1.isSelected()) {
@@ -131,7 +128,6 @@ public class GuiForm extends JFrame {
             }
         });
         supprimerButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedList = list1.getSelectedIndex();
                 ListModel model = list1.getModel();
