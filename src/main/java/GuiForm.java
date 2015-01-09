@@ -1,6 +1,7 @@
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +31,6 @@ public class GuiForm extends JFrame{
         final Upload upl = new Upload();
 
         dlm = new DefaultListModel();
-
 
         setContentPane(rootPanel);
 

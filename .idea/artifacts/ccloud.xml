@@ -20,9 +20,10 @@
       <element id="library" level="project" name="Maven: commons-io:commons-io:2.0.1" />
       <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
       <element id="library" level="project" name="Maven: org.jvnet.mimepull:mimepull:1.9.3" />
-      <element id="artifact" artifact-name="cCLoud:jar" />
       <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/ccloud/ccloud.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../ccloud.jar" path-in-jar="/" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>
