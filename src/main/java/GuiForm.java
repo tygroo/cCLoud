@@ -47,7 +47,6 @@ public class GuiForm extends JFrame {
         });
 
         testCheckBox2.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 if (testCheckBox1.isSelected()) {
                     testCheckBox1.setSelected(false);
@@ -60,7 +59,6 @@ public class GuiForm extends JFrame {
         list1.setModel(dlm);
 
         ajoutButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser dialogue = new JFileChooser(new File("."));
 
