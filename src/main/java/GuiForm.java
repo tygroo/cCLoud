@@ -1,5 +1,10 @@
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 import javax.swing.*;
@@ -22,6 +27,7 @@ public class GuiForm extends JFrame {
     private JPanel rootPanel;
     private JCheckBox testCheckBox1;
     private JCheckBox testCheckBox2;
+    private JList list2;
     DefaultListModel dlm;
 
 
@@ -115,12 +121,32 @@ public class GuiForm extends JFrame {
                         System.out.print("Erreur du tranfert de :" + o + "avec pour erreur :" + e1.getMessage());
                         //e1.printStackTrace();
                     }
-                    if (StringUtils.isBlank(response) && null != response) {
+                    if (StringUtils.isNotBlank(response) && null != response) {
+                        JSONParser parser=new JSONParser();
+                        Object obj= null;
+                        try {
+                            obj = parser.parse(response);
+                            JSONObject array= (JSONObject) obj;
+                            int idPist = (int)   array.get(4);
+                            String namePict = (String) array.get(3);
+                            String pathPict = (String) array.get(0);
+                            String nameHPict = (String) array.get(2);
+                            String nameMPict = (String) array.get(1);
+                            String nameLPict = (String) array.get(5);
+
+                            //String creationDate = (String) array.get(6);
+                            //String user = (String) array.get(7);
+
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+
                         //finalList.removeListDataListener((ListDataListener) finalList.getElementAt(i));
                         dlm.remove(i);
                         list1.setModel(dlm);
                         pack();
                     }
+
                     System.out.print("/r Fin du tranfert de :" + o);
                 }
             }

@@ -17,7 +17,7 @@ public class Upload {
         WebResource resource = Client.create().resource(url);
         FormDataMultiPart form = new FormDataMultiPart();
         form.field("fileName", uploadFile.getName());
-        FormDataBodyPart fdp = new FormDataBodyPart("content",
+        FormDataBodyPart fdp = new FormDataBodyPart("file",
                 new FileInputStream(uploadFile),
                 MediaType.APPLICATION_OCTET_STREAM_TYPE);
         form.bodyPart(fdp);
