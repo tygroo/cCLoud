@@ -9,6 +9,8 @@ import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,9 +29,12 @@ public class GuiForm extends JFrame {
     private JPanel rootPanel;
     private JCheckBox testCheckBox1;
     private JCheckBox testCheckBox2;
-    private JList list2;
+    private JTable table1;
+    private JTextPane textPane1;
     DefaultListModel dlm;
-
+    String[] columnNames;
+    Object[][] data;
+    DefaultTableModel model;
 
     public GuiForm() {
         super();
@@ -37,7 +42,7 @@ public class GuiForm extends JFrame {
         final Upload upl = new Upload();
 
         dlm = new DefaultListModel();
-
+        textPane1= new JTextPane();
         setContentPane(rootPanel);
 
         pack();
@@ -98,12 +103,14 @@ public class GuiForm extends JFrame {
         envoyerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String url = "http://198.27.66.107/cloudpix/rest/upload/file/";
+                String urlDL = "http://198.27.66.107/cloudpix/rest/";
                 if (testCheckBox1.isSelected()) {
                     url = "http://localhost:8080/rest/upload/file/";
-
+                    urlDL = "http://localhost:8080/rest/";
                 }
                 if (testCheckBox2.isSelected()) {
                     url = "http://localhost:8081/rest/upload/file/";
+                    urlDL = "http://localhost:8080/rest/";
                 }
 
 
@@ -127,12 +134,25 @@ public class GuiForm extends JFrame {
                         try {
                             obj = parser.parse(response);
                             JSONObject array= (JSONObject) obj;
-                            int idPist = (int)   array.get(4);
-                            String namePict = (String) array.get(3);
-                            String pathPict = (String) array.get(0);
-                            String nameHPict = (String) array.get(2);
-                            String nameMPict = (String) array.get(1);
-                            String nameLPict = (String) array.get(5);
+
+                            long idPist = (long)array.get("id");
+                            String namePict = (String) array.get("name");
+                            String namePictM = (String) array.get("nameMed");
+                            String namePictL = (String) array.get("nameLow");
+
+                            String shotNameHight = (String) array.get("shortNameHight");
+                            String shotNameMedium = (String) array.get("shortNameMed");
+                            String shotNameLow = (String) array.get("shortNameLow");
+
+                            String content = namePict + "==> shotURL Normal :"+ urlDL+shotNameHight+ "|| shotURL Medium :"+ urlDL+shotNameMedium + "|| shotURL Low :"+ urlDL+shotNameLow;
+                            textPane1.add(new JTextArea(content,6,10));
+                            textPane1.setVisible(true);
+                            pack();
+                            setVisible(true);
+
+//                            String nameHPict = (String) array.get(2);
+//                            String nameMPict = (String) array.get(1);
+//                            String nameLPict = (String) array.get(5);
 
                             //String creationDate = (String) array.get(6);
                             //String user = (String) array.get(7);
